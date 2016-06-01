@@ -17,9 +17,10 @@ package sms
  */
 
 import (
-	"github.com/njern/gonexmo"
+	"libs/github.com/njern/gonexmo"
 	"strconv"
 	"time"
+	"fmt"
 )
 
 func SendSMS(keySMS, secretSMS, fromSMS, messageSMS, toSMS string) (string, bool) {
@@ -43,7 +44,7 @@ func SendSMS(keySMS, secretSMS, fromSMS, messageSMS, toSMS string) (string, bool
 		return "ocurrió un error enviando sms", false
 	}
 	messageReport := meesagetext.Messages
-
+	fmt.Println(messageReport)
 	if messageReport[0].Status.String() != "Success" {
 		return "ocurrió un error de datos de servidor de sms", false
 	}

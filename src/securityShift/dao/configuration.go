@@ -25,9 +25,9 @@ type Configuration struct {
 	PortServer         string  //puerto del servidor por donde van a escuchar las peticiones de securityShift(nombre del archivo .pem)
 	Private_key        string  //certificado privado (nombre del archivo .pem)
 	Public_key         string  //certificado público (nombre del archivo .pem)
-	/*Numfile            int     //Numero de intentos de loguin
-	TimeSessionUser    float64 //Tiempo de session, sin actividad en segundos
-	TimeSessionDestroy int     //tiempo en minutos que se activa el liberador de sessiones caducadas
+	Numfile            int     //Numero de intentos de loguin
+	TimeSessionUser    int 	   //Tiempo de session, sin actividad en segundos
+	/*TimeSessionDestroy int */    //tiempo en minutos que se activa el liberador de sessiones caducadas
 	EmailServer        string  //Email para envio de mensajes
 	PasswordEmail      string  //contraseña del email
 	HostMail           string  //Mail del correo de
@@ -37,4 +37,16 @@ type Configuration struct {
 	KeySMS             string  //llave de cliente de Gonexmo
 	SecretSMS          string  //codigo secreto de cliente de Gonexmo
 	FromSMS            string  //numero de celular de envio de mensajes*/
+	Shifts  		   []*Shift //array de turnos
+}
+
+
+/**
+     * estructura de los turnos.
+**/
+
+type Shift struct {
+	Type 		string //tipode turno
+	Initial 	int //rango inicial
+	Final 		int //rango final
 }

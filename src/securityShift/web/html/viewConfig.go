@@ -106,6 +106,8 @@ func (*Securityconfig) ViewConfig(w http.ResponseWriter, r *http.Request) {
 		js.SendFile(w,r)
 		js.SendFilePublic(w,r)
 		js.SaveConfig(w,r)
+		js.NewTypeTurn(w,r)
+		js.RemoveDiv(w,r)
 
 		css.CssViewConfig(w,r)
 
@@ -113,6 +115,8 @@ func (*Securityconfig) ViewConfig(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "<body> ")
 
 		fmt.Fprintln(w, "<div id='container' class='row'> ")
+
+		//////* Configuración principal */////
 
 		fmt.Fprintln(w, "<div class='row' id='intro'> ")
 		fmt.Fprintln(w, "	<div class='panel-body opaque float-center'> ")
@@ -158,6 +162,222 @@ func (*Securityconfig) ViewConfig(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "			</div> ")
 		fmt.Fprintln(w, "		</div> ")
 
+		fmt.Fprintln(w, "	</div> ")
+		fmt.Fprintln(w, "</div> ")
+
+		//////* Configuración servidor email */////
+
+		fmt.Fprintln(w, "<div class='row' id='intro'> ")
+		fmt.Fprintln(w, "	<div class='panel-body opaque float-center'> ")
+		fmt.Fprintln(w, "   	<div class='row div-labelTitle'> ")
+		fmt.Fprintln(w, "       	<div class='col-xs-12 div-labelTitle'> ")
+		fmt.Fprintln(w, "           	<label>Configuración servidor Email</label> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "       <div id='divportServer' class='row marginInput'> ")
+		fmt.Fprintln(w, "       	<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "           	<label>Correo servidor:</label> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "           <div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='email' id='emailServer' name='emailServer' class='form-control' generictype='email' obligatory='true' spa='spaemailServer' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spaemailServer' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "		<div class='row marginInput'> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "				<label>Password correo servidor:</label> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='password' id='emailServerPass' name='emailServerPass' class='form-control' generictype='text' obligatory='true' spa='spaemailServerPass' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spaemailServerPass' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "		</div> ")
+
+		fmt.Fprintln(w, "		<div class='row marginInput'> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "				<label>Host mail servidor:</label> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='text' id='emailServerHost' name='emailServerHost' class='form-control' generictype='text' obligatory='true' spa='spaemailServerHost' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spaemailServerHost' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "		</div> ")
+
+		fmt.Fprintln(w, "		<div class='row marginInput'> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "				<label>Puerto correo servidor:</label> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='number' id='emailServerPort' name='emailServerPort' class='form-control' generictype='number' obligatory='true' spa='spaemailServerPort' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spaemailServerPort' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "		</div> ")
+
+		fmt.Fprintln(w, "	</div> ")
+		fmt.Fprintln(w, "</div> ")
+
+		//////* Configuración servidor sms */////
+
+		fmt.Fprintln(w, "<div class='row' id='intro'> ")
+		fmt.Fprintln(w, "	<div class='panel-body opaque float-center'> ")
+		fmt.Fprintln(w, "   	<div class='row div-labelTitle'> ")
+		fmt.Fprintln(w, "       	<div class='col-xs-12 div-labelTitle'> ")
+		fmt.Fprintln(w, "           	<label>Configuración servidor SMS</label> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "       <div id='divportServer' class='row marginInput'> ")
+		fmt.Fprintln(w, "       	<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "           	<label>Llave del servidor sms:</label> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "           <div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='text' id='keyServerSms' name='keyServerSms' class='form-control' generictype='text' obligatory='true' spa='spakeyServerSms' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spakeyServerSms' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "		<div class='row marginInput'> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "				<label>Código del servidor sms:</label> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='text' id='codeServerSms' name='codeServerSms' class='form-control' generictype='text' obligatory='true' spa='spacodeServerSms' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spacodeServerSms' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "		</div> ")
+
+		fmt.Fprintln(w, "		<div class='row marginInput'> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "				<label>Número de envios servidor de sms:</label> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='number' id='numServerSms' name='numServerSms' class='form-control' generictype='number' obligatory='true' spa='spanumServerSms' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spanumServerSms' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "		</div> ")
+
+		fmt.Fprintln(w, "	</div> ")
+		fmt.Fprintln(w, "</div> ")
+
+		//////* Configuración sesiones */////
+
+		fmt.Fprintln(w, "<div class='row' id='intro'> ")
+		fmt.Fprintln(w, "	<div class='panel-body opaque float-center'> ")
+		fmt.Fprintln(w, "   	<div class='row div-labelTitle'> ")
+		fmt.Fprintln(w, "       	<div class='col-xs-12 div-labelTitle'> ")
+		fmt.Fprintln(w, "           	<label>Configuración de sesión</label> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "       <div id='divportServer' class='row marginInput'> ")
+		fmt.Fprintln(w, "       	<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "           	<label>Intentos de logueo:</label> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "           <div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='number' id='numFile' name='numFile' class='form-control' generictype='number' obligatory='true' spa='spanumFile' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spanumFile' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "		<div class='row marginInput'> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "				<label>Tiempo de caducidad sesión:</label> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "			<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           	<div class='input-group'> ")
+		fmt.Fprintln(w, "               	<input type='number' id='timeSesion' name='timeSesion' class='form-control' generictype='number' obligatory='true' spa='spatimeSesion' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   <span class='input-group-addon opaque' id='basic-addon2'><span id='spatimeSesion' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               </div> ")
+		fmt.Fprintln(w, "			</div> ")
+		fmt.Fprintln(w, "		</div> ")
+
+		fmt.Fprintln(w, "	</div> ")
+		fmt.Fprintln(w, "</div> ")
+
+		///////////////////////////////////////////////
+
+		//////* Configuración turnos */////
+
+		fmt.Fprintln(w, "<div class='row' id='intro'> ")
+		fmt.Fprintln(w, "	<div class='panel-body opaque float-center'> ")
+		fmt.Fprintln(w, "   	<div class='row div-labelTitle'> ")
+		fmt.Fprintln(w, "       	<div class='col-xs-12 div-labelTitle'> ")
+		fmt.Fprintln(w, "           	<label>Configuración de turnos</label> ")
+		fmt.Fprintln(w, "           </div> ")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "       <div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "          <a type='button' class='btn btn-default' aria-haspopup='true' aria-expanded='false' onclick='newTypeTurn();'>+</a>")
+		fmt.Fprintln(w, "       </div> ")
+
+		fmt.Fprintln(w, "       <div id='divShift' class='row marginInput'> ")
+
+		fmt.Fprintln(w, "       <div id='div-turn-1' class='col-xs-12' > ")
+
+		fmt.Fprintln(w, "       	<div class='col-xs-3 fontLabel'> ")
+		fmt.Fprintln(w, "       		<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "           		<label>Typo de turno:</label> ")
+		fmt.Fprintln(w, "           	</div> ")
+		fmt.Fprintln(w, "           	<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           		<div class='input-group'> ")
+		fmt.Fprintln(w, "               		<input type='text' id='typeTurn-1' name='typeTurn-1' class='form-control' generictype='text' obligatory='true' spa='spatypeTurn' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   	<span class='input-group-addon opaque' id='basic-addon2'><span id='spatypeTurn' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               	</div> ")
+		fmt.Fprintln(w, "           	</div> ")
+		fmt.Fprintln(w, "       	</div> ")
+
+		fmt.Fprintln(w, "       	<div class='col-xs-3 fontLabel'> ")
+		fmt.Fprintln(w, "       		<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "           		<label>Rango inicial:</label> ")
+		fmt.Fprintln(w, "           	</div> ")
+		fmt.Fprintln(w, "           	<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           		<div class='input-group'> ")
+		fmt.Fprintln(w, "               		<input type='number' id='initial-1' name='initial-1' class='form-control' generictype='number' obligatory='true' spa='spainitial' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   	<span class='input-group-addon opaque' id='basic-addon2'><span id='spainitial' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               	</div> ")
+		fmt.Fprintln(w, "           	</div> ")
+		fmt.Fprintln(w, "       	</div> ")
+
+		fmt.Fprintln(w, "       	<div class='col-xs-3 fontLabel'> ")
+		fmt.Fprintln(w, "       		<div class='col-xs-12 fontLabel'> ")
+		fmt.Fprintln(w, "           		<label>Rango final:</label> ")
+		fmt.Fprintln(w, "           	</div> ")
+		fmt.Fprintln(w, "           	<div class='col-xs-12 fieldRight'> ")
+		fmt.Fprintln(w, "           		<div class='input-group'> ")
+		fmt.Fprintln(w, "               		<input type='number' id='final-1' name='final-1' class='form-control' generictype='number' obligatory='true' spa='spatypeTurn' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> ")
+		fmt.Fprintln(w, "                   	<span class='input-group-addon opaque' id='basic-addon2'><span id='spatypeTurn' class='glyphicon glyphicon-asterisk' style='display: none;'></span> ")
+		fmt.Fprintln(w, "               	</div> ")
+		fmt.Fprintln(w, "           	</div> ")
+		fmt.Fprintln(w, "       	</div> ")
+
+		fmt.Fprintln(w, "       	<div class='col-xs-3 fontLabel'> ")
+		fmt.Fprintln(w, "       		<div class='col-xs-12 fontLabel'> ")
+		//fmt.Fprintln(w, "           		<a type='button' class='btn btn-danger size-close' aria-haspopup='true' aria-expanded='false' onclick='removeDiv(1);'>x</a>")
+		fmt.Fprintln(w, "           	</div> ")
+		fmt.Fprintln(w, "       	</div> ")
+
+		fmt.Fprintln(w, "       </div> ")
+		
+		fmt.Fprintln(w, "       </div> ")
+
 		fmt.Fprintln(w, "		<div class='row marginInput'> ")
 		fmt.Fprintln(w, "			<div class='col-xs-12 botom-size'> ")
 		fmt.Fprintln(w, "				<a type='button' class='btn btn-primary bottom-nextToback' aria-haspopup='true' aria-expanded='false' onclick='sendConfiguration();'>GUARDAR</a>")
@@ -166,6 +386,8 @@ func (*Securityconfig) ViewConfig(w http.ResponseWriter, r *http.Request) {
 
 		fmt.Fprintln(w, "	</div> ")
 		fmt.Fprintln(w, "</div> ")
+
+		///////////////////////////////////////////////
 
 		fmt.Fprintln(w, "</div> ")
 

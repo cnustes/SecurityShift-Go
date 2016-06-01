@@ -353,8 +353,46 @@ func SaveConfig(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintln(w, "<script type='text/javascript'> ")
 	fmt.Fprintln(w, "saveConfig = function() { ")
+
+	fmt.Fprintln(w, "var arrayShift =  new Array(); ")
+
 	fmt.Fprintln(w, "var portServer = ':'+$.trim($('#portServer').val()); ")
-	fmt.Fprintln(w, "var data ={'PortServer':portServer,'Private_key':'config/private_key','Public_key':'config/public_key' }; ")
+
+	fmt.Fprintln(w, "var emailServer = $.trim($('#emailServer').val()); ")
+	fmt.Fprintln(w, "var emailServerPass = $.trim($('#emailServerPass').val()); ")
+	fmt.Fprintln(w, "var emailServerHost = $.trim($('#emailServerHost').val()); ")
+	fmt.Fprintln(w, "var emailServerPort = $.trim($('#emailServerPort').val()); ")
+
+	fmt.Fprintln(w, "var keyServerSms = $.trim($('#keyServerSms').val()); ")
+	fmt.Fprintln(w, "var codeServerSms = $.trim($('#codeServerSms').val()); ")
+	fmt.Fprintln(w, "var numServerSms = '57'+$.trim($('#numServerSms').val()); ")
+
+	fmt.Fprintln(w, "var numFile = $.trim($('#numFile').val()); ")
+	fmt.Fprintln(w, "var timeSesion = '57'+$.trim($('#timeSesion').val()); ")
+
+	/****/ fmt.Fprintln(w, "if(numDiv>0){ ")
+	/************/ fmt.Fprintln(w, "for(var i = 1; i <= numDiv;i++){ ")
+	/****************/ fmt.Fprintln(w, "var typeTurn = $.trim($('#typeTurn-'+i).val()); ")
+	/****************/ fmt.Fprintln(w, "var initial = $.trim($('#initial-'+i).val()); ")
+	/****************/ fmt.Fprintln(w, "var final = $.trim($('#final-'+i).val()); ")
+	/****************/ fmt.Fprintln(w, "if(typeTurn != null && typeTurn != undefined && typeTurn !='' && initial != undefined && initial != null && initial != '' && final != undefined && final != null && final != '' ){ ")
+	
+	/********************/ fmt.Fprintln(w, "var Shift = { ")
+	    		/********************/ fmt.Fprintln(w, "Type: typeTurn, ")
+	    		/********************/ fmt.Fprintln(w, "Initial: parseInt(initial), ")
+	    		/********************/ fmt.Fprintln(w, "Final: parseInt(final) ")
+				/********************/ fmt.Fprintln(w, "}; ")
+
+	/********************/ fmt.Fprintln(w, "arrayShift.push(Shift); ")
+
+	/****************/ fmt.Fprintln(w, "} ")
+	/************/ fmt.Fprintln(w, "} ")
+	/****/ fmt.Fprintln(w, "} ")
+
+	
+
+	fmt.Fprintln(w, "var data ={'PortServer':portServer,'Private_key':'config/private_key','Public_key':'config/public_key','EmailServer':emailServer,'PasswordEmail':emailServerPass,'HostMail':emailServerHost,'PortMail':parseInt(emailServerPort),'KeySMS':keyServerSms,'SecretSMS':codeServerSms,'FromSMS':numServerSms,'Numfile':parseInt(numFile),'TimeSessionUser':parseInt(timeSesion),'Shifts': arrayShift }; ")
+	fmt.Fprintln(w, "console.log(data); ")
 
 	fmt.Fprintln(w, "$.ajax({ ")
 	fmt.Fprintln(w, "type: 'POST', ")
@@ -492,4 +530,80 @@ func NormalColor(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "	$(element).css({'border': '1px solid white'}); ")
 	fmt.Fprintln(w, "} ")
 	fmt.Fprintln(w, "</script> ")
+}
+
+
+/**
+     * Método que representa el método js para volver a poner el color normal a los campos.
+     *
+     * @w   http response(http.ResponseWriter).
+     * @r   http request(http.Request).
+**/
+
+func NewTypeTurn(w http.ResponseWriter, r *http.Request) {
+
+fmt.Fprintln(w, "<script type='text/javascript'> ")
+	fmt.Fprintln(w, "var numDiv = 2; ")
+	fmt.Fprintln(w, "newTypeTurn=function(){ ")
+	fmt.Fprintln(w, "var html = ''; ")
+
+	fmt.Fprintln(w, "       	html+=\"<div id='div-turn-\"+numDiv+\"' class='col-xs-12 margin-div'> \" ")
+
+	fmt.Fprintln(w, "       	html+=\"<div class='col-xs-3 fontLabel'> \" ")
+	fmt.Fprintln(w, "           	html+=\"<div class='col-xs-12 fieldRight'> \" ")
+	fmt.Fprintln(w, "           		html+=\"<div class='input-group'> \" ")
+	fmt.Fprintln(w, "               		html+=\"<input type='text' id='typeTurn-1' name='typeTurn-1' class='form-control' generictype='text' obligatory='true' spa='spatypeTurn' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> \" ")
+	fmt.Fprintln(w, "                   	html+=\"<span class='input-group-addon opaque' id='basic-addon2'><span id='spatypeTurn' class='glyphicon glyphicon-asterisk' style='display: none;'></span> \" ")
+	fmt.Fprintln(w, "               	html+=\"</div> \" ")
+	fmt.Fprintln(w, "           	html+=\"</div> \" ")
+	fmt.Fprintln(w, "       	html+=\"</div> \" ")
+
+	fmt.Fprintln(w, "       	html+=\"<div class='col-xs-3 fontLabel'> \" ")
+	fmt.Fprintln(w, "           	html+=\"<div class='col-xs-12 fieldRight'> \" ")
+	fmt.Fprintln(w, "           		html+=\"<div class='input-group'> \" ")
+	fmt.Fprintln(w, "               		html+=\"<input type='number' id='initial-1' name='initial-1' class='form-control' generictype='number' obligatory='true' spa='spainitial' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> \" ")
+	fmt.Fprintln(w, "                   	html+=\"<span class='input-group-addon opaque' id='basic-addon2'><span id='spainitial' class='glyphicon glyphicon-asterisk' style='display: none;'></span> \" ")
+	fmt.Fprintln(w, "               	html+=\"</div> \" ")
+	fmt.Fprintln(w, "           	html+=\"</div> \" ")
+	fmt.Fprintln(w, "       	html+=\"</div> \" ")
+
+	fmt.Fprintln(w, "       	html+=\"<div class='col-xs-3 fontLabel'> \" ")
+	fmt.Fprintln(w, "           	html+=\"<div class='col-xs-12 fieldRight'> \" ")
+	fmt.Fprintln(w, "           		html+=\"<div class='input-group'> \" ")
+	fmt.Fprintln(w, "               		html+=\"<input type='number' id='final-1' name='final-1' class='form-control' generictype='number' obligatory='true' spa='spatypeTurn' required onfocus='normalColor(this)' aria-describedby='basic-addon2'> \" ")
+	fmt.Fprintln(w, "                   	html+=\"<span class='input-group-addon opaque' id='basic-addon2'><span id='spatypeTurn' class='glyphicon glyphicon-asterisk' style='display: none;'></span> \" ")
+	fmt.Fprintln(w, "               	html+=\"</div> \" ")
+	fmt.Fprintln(w, "           	html+=\"</div> \" ")
+	fmt.Fprintln(w, "       	html+=\"</div> \" ")
+
+	fmt.Fprintln(w, "       	html+=\"<div class='col-xs-3 fontLabel'> \" ")
+	fmt.Fprintln(w, "       		html+=\"<div class='col-xs-12 fontLabel'> \" ")
+	fmt.Fprintln(w, "           		html+=\"<a type='button' class='btn btn-danger size-close' aria-haspopup='true' aria-expanded='false' onclick='removeDiv(\"+numDiv+\");'>x</a>\" ")
+	fmt.Fprintln(w, "           	html+=\"</div> \" ")
+	fmt.Fprintln(w, "       	html+=\"</div> \" ")
+
+	fmt.Fprintln(w, "       	html+=\"</div> \" ")
+
+	fmt.Fprintln(w, "       	numDiv = numDiv+1; ")
+	fmt.Fprintln(w, "       	$('#divShift').append(html); ")
+
+	fmt.Fprintln(w, "} ")
+	fmt.Fprintln(w, "</script> ")
+
+}
+
+/**
+     * Método que representa el método js para remover un div.
+     *
+     * @w   http response(http.ResponseWriter).
+     * @r   http request(http.Request).
+**/
+
+func RemoveDiv(w http.ResponseWriter, r *http.Request) {
+
+fmt.Fprintln(w, "<script type='text/javascript'> ")
+	fmt.Fprintln(w, "removeDiv=function(num){ ")
+	fmt.Fprintln(w, "$('#div-turn-'+num).remove(); ")
+	fmt.Fprintln(w, "} ")
+fmt.Fprintln(w, "</script> ")
 }

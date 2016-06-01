@@ -62,4 +62,12 @@ func CssViewConfig(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, ".colorHeaderSucces{ background-color: #21981F; color: aliceblue;} ")
 		fmt.Fprintln(w, "</style> ")
 
+		fmt.Fprintln(w, "<style type='text/css'> ")
+		fmt.Fprintln(w, ".size-close{ width: 0px; height: 0px; padding-left: 2px; padding-bottom: 19px; padding-top: 0px;} ")
+		fmt.Fprintln(w, "</style> ")
+
+
+		fmt.Fprintln(w, "<style type='text/css'> ")
+		fmt.Fprintln(w, ".margin-div{  margin-top: 10px; } ")
+		fmt.Fprintln(w, "</style> ")
 	}

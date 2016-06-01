@@ -83,7 +83,7 @@ func activateGui(state bool) {
 	hrest.RegisterService("/services/uploadfilePublic", "POST", varHtml.UploadFilePublic)
 	
 
-	fmt.Println("Abra el navegador e ingrese a la pagina https://" + hostbase + ":8085/viewConfig")
+	fmt.Println("Abra el navegador e ingrese a la pagina http://" + hostbase + ":8085/viewConfig")
 	err := open.Run("http://" + hostbase + ":8085/viewConfig")
 
 	if err != nil {
